@@ -16,6 +16,7 @@ def read_report(path) -> dict:
 
     return group_errors
 
+
 def compare(left_file: dict, right_file: dict):
     # Compare groups
     result = set(left_file) - (set(right_file))
@@ -29,24 +30,34 @@ def compare(left_file: dict, right_file: dict):
     for group_name in left_file:
         result = set(left_file[group_name]) - (set(right_file[group_name]))
         if result:
-            print(f"В левом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n")
+            print(
+                f"В левом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n"
+            )
         result = set(right_file[group_name]) - (set(left_file[group_name]))
         if result:
-            print(f"В правом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n")
-
+            print(
+                f"В правом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n"
+            )
 
     # Compare rules
     for group_name in left_file:
         for rule_name in left_file[group_name]:
-            result = set(left_file[group_name][rule_name]) - (set(right_file[group_name][rule_name]))
+            result = set(left_file[group_name][rule_name]) - (
+                set(right_file[group_name][rule_name])
+            )
             if result:
-                print(f"В левом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n")
-            
-            result = set(right_file[group_name][rule_name]) - (set(left_file[group_name][rule_name]))
+                print(
+                    f"В левом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n"
+                )
+
+            result = set(right_file[group_name][rule_name]) - (
+                set(left_file[group_name][rule_name])
+            )
             if result:
-                print(f"В правом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n")
-            
-        
+                print(
+                    f"В правом отчете есть дополнительные ошибки:\n{"\n".join(result)}\n\n"
+                )
+
 
 if __name__ == "__main__":
     left_file = read_report("left")
